@@ -25,7 +25,10 @@
             watch: {
                 todos: {
                     handler: function (todos) {
-                        // todo
+                        this.$http.post(this.$options.todosUrl, JSON.stringify(todos)).error(function (data, status, request) {
+                            // handle error
+                            alert(status);
+                        });
                     },
                     deep: true
                 }
@@ -50,6 +53,16 @@
                         });
                     }
                 }
+            },
+
+            ready: function() {
+                this.$http.get(this.$options.todosUrl, function (data, status, request) {
+                    // set data on vm
+                    this.$set('todos', data)
+                }).error(function (data, status, request) {
+                    // handle error
+                    alert(status);
+                });
             },
 
             // methods that implement data logic.

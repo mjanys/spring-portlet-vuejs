@@ -9,5 +9,6 @@ public class TodoConstants extends Constants {
 
     public static final String VIEW_MAIN = "todo/view";
 
-    public static final String GET_RESOURCE = "getTodos";
+    public static final String TODO_RESOURCE = "todo";
+    public static final String TODOS_RESOURCE = "todos";
 }

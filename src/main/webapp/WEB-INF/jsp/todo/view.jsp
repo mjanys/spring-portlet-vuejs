@@ -3,7 +3,7 @@
 
 <%@include file="init.jspf" %>
 
-<portlet:resourceURL var="getUrl" id="<%=TodoConstants.GET_RESOURCE%>"/>
+<portlet:resourceURL var="todosUrl" id="<%=TodoConstants.TODOS_RESOURCE%>"/>
 
 <div id="${ns}todoapp">
     <section class="todoapp">
@@ -65,6 +65,6 @@
             editedTodo: null,
             visibility: 'all'
         },
-        getUrl: '${getUrl}'
+        todosUrl: '${todosUrl}'
     });
 </script>

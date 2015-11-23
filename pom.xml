@@ -156,6 +156,11 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.3.1</version>
+        </dependency>
 
         <!-- Liferay Portal dependencies -->
 
@@ -278,6 +283,14 @@
                     <autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
                     <liferayVersion>${liferay.version}</liferayVersion>
                     <pluginType>portlet</pluginType>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
         </plugins>

@@ -5,31 +5,22 @@ package cz.janys.iface.dto;
  */
 public class TodoDto {
 
-    private String name;
-    private String subject;
-    private String message;
+    private String title;
+    private boolean completed;
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getSubject() {
-        return subject;
+    public boolean isCompleted() {
+        return completed;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }

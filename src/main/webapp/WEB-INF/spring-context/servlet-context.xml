@@ -11,6 +11,19 @@
     <!-- Enables the Spring MVC @Controller programming model -->
     <mvc:annotation-driven/>
 
+    <bean id="annotationMethodHandlerAdapter" class="org.springframework.web.portlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="customArgumentResolvers">
+            <list>
+                <bean class="cz.janys.portlet.mvc.RequestBodyArgumentResolver"/>
+            </list>
+        </property>
+        <property name="customModelAndViewResolvers">
+            <list>
+                <bean class="cz.janys.portlet.mvc.ResponseBodyArgumentResolver"/>
+            </list>
+        </property>
+    </bean>
+
     <!-- Spring MVC VIEW Configuration -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
