@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 6.2.0//EN"
+        "http://www.liferay.com/dtd/liferay-portlet-app_6_2_0.dtd">
+
+<liferay-portlet-app>
+    <portlet>
+        <portlet-name>TodoPortlet</portlet-name>
+        <instanceable>false</instanceable>
+        <requires-namespaced-parameters>false</requires-namespaced-parameters>
+        <header-portlet-css>/css/todo/todo.css</header-portlet-css>
+        <header-portlet-javascript>/js/vue.min.js</header-portlet-javascript>
+        <header-portlet-javascript>/js/vue-resource.min.js</header-portlet-javascript>
+        <header-portlet-javascript>/js/todo/todo-vue.js</header-portlet-javascript>
+        <css-class-wrapper>todosapp-portlet</css-class-wrapper>
+    </portlet>
+</liferay-portlet-app>

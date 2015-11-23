@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <import resource="servlet-context.xml"/>
+
+    <!-- @Autowired annotation -->
+    <context:annotation-config/>
+
+    <!-- Application exception handling -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="cz.janys.iface.exception.ServiceException">error</prop>
+                <prop key="javax.persistence.EntityNotFoundException">error-not-found</prop>
+                <prop key="java.lang.Exception">error</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="useCodeAsDefaultMessage" value="true"/>
+        <property name="fallbackToSystemLocale" value="false"/>
+        <property name="basenames">
+            <list>
+                <value>content.common-messages</value>
+            </list>
+        </property>
+    </bean>
+
+    <import resource="core/database.xml"/>
+
+    <import resource="core/jpa.xml"/>
+
+    <import resource="core/jpa-repository.xml"/>
+
+    <import resource="core/services.xml"/>
+
+    <import resource="portlet/common-context.xml"/>
+
+    <context:component-scan base-package="cz.janys.core.service.**"/>
+
+</beans>
