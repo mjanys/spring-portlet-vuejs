@@ -3,8 +3,8 @@ package cz.janys.portlet.todo;
 import cz.janys.iface.dto.TodoDto;
 import cz.janys.iface.service.TodoService;
 import cz.janys.portlet.AbstractController;
-import cz.janys.portlet.mvc.RequestBody;
-import cz.janys.portlet.mvc.ResponseBody;
+import cz.janys.portlet.mvc.RequestJson;
+import cz.janys.portlet.mvc.ResponseJson;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,14 +40,14 @@ public class TodoController extends AbstractController {
 
     @ResourceMapping(TODO_RESOURCE)
     @RequestMapping(method = RequestMethod.GET, params = PARAM_ID)
-    @ResponseBody
+    @ResponseJson
     public TodoDto getTodo() {
         return new TodoDto();
     }
 
     @ResourceMapping(TODOS_RESOURCE)
     @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
+    @ResponseJson
     public List<TodoDto> getTodos() {
         List<TodoDto> data = service.load();
         return data != null ? data : Collections.<TodoDto>emptyList();
@@ -55,7 +55,7 @@ public class TodoController extends AbstractController {
 
     @ResourceMapping(TODOS_RESOURCE)
     @RequestMapping(method = RequestMethod.POST)
-    public void getTodos(@RequestBody List<TodoDto> todos) {
+    public void getTodos(@RequestJson List<TodoDto> todos) {
         service.save(todos);
     }
 

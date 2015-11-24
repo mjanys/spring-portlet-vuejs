@@ -27,7 +27,7 @@ public class RequestBodyArgumentResolver implements WebArgumentResolver {
     }
 
     private boolean canHandle(MethodParameter methodParameter, NativeWebRequest webRequest) {
-        return methodParameter.hasParameterAnnotation(RequestBody.class) && webRequest.getNativeRequest() instanceof ClientDataRequest  ;
+        return methodParameter.hasParameterAnnotation(RequestJson.class) && webRequest.getNativeRequest() instanceof ClientDataRequest  ;
     }
 
 }

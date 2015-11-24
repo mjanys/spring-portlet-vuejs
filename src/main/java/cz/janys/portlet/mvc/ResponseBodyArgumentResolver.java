@@ -55,6 +55,6 @@ public class ResponseBodyArgumentResolver implements ModelAndViewResolver {
     }
 
     private boolean canHandle(Method method, Class clazz, Object returnValue, ExtendedModelMap modelMap, NativeWebRequest request) {
-        return method.getAnnotation(ResponseBody.class) != null && request.getNativeResponse() instanceof ResourceResponse;
+        return method.getAnnotation(ResponseJson.class) != null && request.getNativeResponse() instanceof ResourceResponse;
     }
 }
