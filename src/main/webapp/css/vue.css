@@ -18,3 +18,7 @@
 .v-cloak--inlineBlock {
     display: none;
 }
+
+[v-cloak] {
+    display: none;
+}

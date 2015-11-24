@@ -16,6 +16,35 @@
         }
     };
 
+    var router = function(app) {
+        var router = new Router();
+
+        ['all', 'active', 'completed'].forEach(function (visibility) {
+            router.on(visibility, function () {
+                app.visibility = visibility;
+            });
+        });
+        /*
+        router.on('all', function () {
+            app.visibility = 'all';
+        });
+        router.on('active', function () {
+            app.visibility = 'active';
+        });
+        router.on('completed', function () {
+            app.visibility = 'completed';
+        });
+        */
+        router.configure({
+            notfound: function () {
+                window.location.hash = '';
+                app.visibility = 'all';
+            }
+        });
+
+        router.init();
+    };
+
     window.TodoVue = window.TodoVue || Vue.extend({
             // app initial state
             // can't in extends - it could be shared between instances
@@ -53,6 +82,10 @@
                         });
                     }
                 }
+            },
+
+            beforeCompile: function() {
+                router(this);
             },
 
             ready: function() {

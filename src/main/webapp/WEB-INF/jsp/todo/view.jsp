@@ -5,7 +5,7 @@
 
 <portlet:resourceURL var="todosUrl" id="<%=TodoConstants.TODOS_RESOURCE%>"/>
 
-<div id="${ns}todoapp">
+<div id="${ns}todoapp" v-cloak>
     <section class="todoapp">
         <header class="header">
             <h1>todos</h1>

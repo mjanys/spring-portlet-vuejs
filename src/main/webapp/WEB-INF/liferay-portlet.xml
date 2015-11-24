@@ -11,6 +11,7 @@
         <header-portlet-css>/css/todo/todo.css</header-portlet-css>
         <header-portlet-javascript>/js/vue.min.js</header-portlet-javascript>
         <header-portlet-javascript>/js/vue-resource.min.js</header-portlet-javascript>
+        <header-portlet-javascript>/js/vue-director.js</header-portlet-javascript>
         <header-portlet-javascript>/js/todo/todo-vue.js</header-portlet-javascript>
         <css-class-wrapper>todosapp-portlet</css-class-wrapper>
     </portlet>
