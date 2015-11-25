@@ -1,0 +1,16 @@
+<%@ page import="cz.janys.portlet.todo.TodoConstants" %>
+
+<portlet:resourceURL var="todosUrl" id="<%=TodoConstants.TODOS_RESOURCE%>"/>
+
+<template id="${ns}TodoTemplate">
+    <%@include file="todo_template.html"%>
+</template>
+
+<script type="text/javascript">
+    var todoVue = TodoVue.extend({
+        template: '#${ns}TodoTemplate',
+        todosUrl: '${todosUrl}'
+    });
+    // register
+    Vue.component('todo', todoVue);
+</script>

@@ -48,7 +48,14 @@
     window.TodoVue = window.TodoVue || Vue.extend({
             // app initial state
             // can't in extends - it could be shared between instances
-            data: {},
+            data: function() {
+                return {
+                    todos: [],
+                    newTodo: '',
+                    editedTodo: null,
+                    visibility: 'all'
+                }
+            },
 
             // watch todos change persistence
             watch: {
