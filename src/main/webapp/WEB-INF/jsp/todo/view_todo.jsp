@@ -59,12 +59,6 @@
 <script type="text/javascript">
     new TodoVue({
         el: '#${ns}todoapp',
-        data: {
-            todos: [],
-            newTodo: '',
-            editedTodo: null,
-            visibility: 'all'
-        },
         todosUrl: '${todosUrl}'
     });
 </script>
