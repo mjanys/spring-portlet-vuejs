@@ -14,6 +14,8 @@ public class PersonConstants extends Constants {
     public static final String ACTION_SAVE = "create";
     public static final String ACTION_DELETE = "delete";
 
+    public static final String RESOURCE_PERSONS = "persons";
+
     public static final String VIEW_MAIN = "person/view";
     public static final String VIEW_CREATE_FORM = "person/view_create";
     public static final String VIEW_EDIT_FORM = "person/view_edit";

@@ -4,18 +4,30 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <thead>
-    <tr>
-        <th>
+<tr class="persons-table-head">
+    <th @click="sortBy('id')">
             #
+            <span class="arrow"
+                  :class="sortOrders['id'] > 0 ? 'asc' : 'dsc'">
+            </span>
         </th>
-        <th>
+    <th @click="sortBy('name')">
             <spring:message code="label-table-header-name"/>
+            <span class="arrow"
+                  :class="sortOrders['name'] > 0 ? 'asc' : 'dsc'">
+            </span>
         </th>
-        <th>
+    <th @click="sortBy('email')">
             <spring:message code="label-table-header-email"/>
+            <span class="arrow"
+                  :class="sortOrders['email'] > 0 ? 'asc' : 'dsc'">
+          </span>
         </th>
-        <th>
+    <th @click="sortBy('timestamp')">
             <spring:message code="label-table-header-created"/>
+            <span class="arrow"
+                  :class="sortOrders['timestamp'] > 0 ? 'asc' : 'dsc'">
+          </span>
         </th>
         <th>
             <spring:message code="label-table-header-actions"/>

@@ -3,6 +3,7 @@ package cz.janys.portlet.person;
 import cz.janys.iface.dto.PersonDto;
 import cz.janys.iface.service.PersonService;
 import cz.janys.portlet.AbstractController;
+import cz.janys.portlet.mvc.ResponseJson;
 import cz.janys.portlet.person.converter.PersonDtoToPtoConverter;
 import cz.janys.portlet.person.converter.PersonPtoToDtoConverter;
 import cz.janys.portlet.person.pto.PersonPto;
@@ -13,15 +14,18 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.portlet.bind.annotation.ActionMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
+import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.validation.Valid;
+import java.util.List;
 
 import static cz.janys.portlet.Constants.PARAM_ID;
 import static cz.janys.portlet.Constants.PARAM_PAGE;
@@ -37,7 +41,7 @@ public class PersonController extends AbstractController {
     private static final Logger LOG = Logger.getLogger(PersonController.class);
 
     @Autowired
-    private PersonService service;
+    private PersonService personService;
 
     @Autowired
     private PersonPtoToDtoConverter ptoToDto;
@@ -50,7 +54,7 @@ public class PersonController extends AbstractController {
             RenderRequest request,
             RenderResponse response) {
 
-        model.addAttribute(ATTR_ITEMS, service.findAllPersons());
+        model.addAttribute(ATTR_ITEMS, personService.findAllPersons());
 
         return VIEW_MAIN;
     }
@@ -62,7 +66,7 @@ public class PersonController extends AbstractController {
             RenderRequest request,
             RenderResponse response) {
 
-        model.addAttribute(ATTR_PERSON_DTO, service.findPersonById(id));
+        model.addAttribute(ATTR_PERSON_DTO, personService.findPersonById(id));
 
         return VIEW_DETAIL;
     }
@@ -88,7 +92,7 @@ public class PersonController extends AbstractController {
             RenderResponse response) {
 
         if (!model.containsAttribute(ATTR_PERSON_PTO)) {
-            PersonDto s = service.findPersonById(id);
+            PersonDto s = personService.findPersonById(id);
             PersonPto pto = dtoToPto.convert(s);
             model.addAttribute(ATTR_PERSON_PTO, pto);
         }
@@ -108,11 +112,11 @@ public class PersonController extends AbstractController {
             PersonDto dto = ptoToDto.convert(pto);
 
             if (dto.getId() == null) {
-                dto = service.createPerson(dto);
+                dto = personService.createPerson(dto);
                 addSuccessMessage(model, "msg-person-saved");
             }
             else {
-                dto = service.updatePerson(dto);
+                dto = personService.updatePerson(dto);
                 addSuccessMessage(model, "msg-person-created");
             }
 
@@ -132,9 +136,16 @@ public class PersonController extends AbstractController {
             ActionResponse response,
             Model model) {
 
-        PersonDto dto = service.findPersonById(id);
-        service.deletePersonById(id);
+        PersonDto dto = personService.findPersonById(id);
+        personService.deletePersonById(id);
 
         addSuccessMessage(model, "msg-hello-person-deleted", dto.getName());
+    }
+
+    @ResourceMapping(RESOURCE_PERSONS)
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseJson
+    public List<PersonDto> persons() {
+        return personService.findAllPersons();
     }
 }

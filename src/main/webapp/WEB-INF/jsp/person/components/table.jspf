@@ -3,8 +3,32 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<bs:table>
-    <%@include file="table_head.jspf"%>
-    <%@include file="table_body.jspf"%>
-</bs:table>
+<portlet:renderURL var="detailUrl">
+    <portlet:param name="<%=PARAM_PAGE%>" value="<%=PERSON_DETAIL_PAGE%>"/>
+</portlet:renderURL>
+<portlet:renderURL var="editUrl">
+    <portlet:param name="<%=PARAM_PAGE%>" value="<%=PERSON_FORM_EDIT_PAGE%>"/>
+</portlet:renderURL>
+
+<portlet:actionURL name="<%=ACTION_DELETE%>" var="deleteUrl"/>
+
+<portlet:resourceURL var="personsDataUrl" id="<%=RESOURCE_PERSONS%>"/>
+
+<div id="${ns}personTable" v-cloak>
+    <bs:table>
+        <%@include file="table_head.jspf" %>
+        <%@include file="table_body.jspf" %>
+    </bs:table>
+</div>
+
+<script type="text/javascript">
+    new PersonsTable({
+        el: '#${ns}personTable',
+
+        dataUrl: '${personsDataUrl}',
+        detailUrl: '${detailUrl}',
+        editUrl: '${editUrl}',
+        deleteUrl: '${deleteUrl}'
+    });
+</script>
 
