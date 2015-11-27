@@ -8,6 +8,7 @@
         <instanceable>true</instanceable>
         <requires-namespaced-parameters>false</requires-namespaced-parameters>
         <header-portlet-css>/css/vue.css</header-portlet-css>
+        <header-portlet-css>/css/vue-animate.css</header-portlet-css>
         <header-portlet-css>/css/todo/todo.css</header-portlet-css>
         <header-portlet-javascript>/js/vue.min.js</header-portlet-javascript>
         <header-portlet-javascript>/js/vue-resource.min.js</header-portlet-javascript>
