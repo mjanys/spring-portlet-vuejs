@@ -14,7 +14,7 @@
             <input class="toggle-all" type="checkbox"
                    v-model="allDone"/>
             <ul class="todo-list">
-                <li class="todo animated"
+                <li class="todo animated-fast"
                     transition="fadeInDown"
                     v-for="todo in filteredTodos"
                     :class="{completed: todo.completed, editing: todo == editedTodo}">
