@@ -46,6 +46,7 @@
     };
 
     window.TodoVue = window.TodoVue || Vue.extend({
+            props: ['todosUrl'],
             // app initial state
             // can't in extends - it could be shared between instances
             data: function() {
@@ -61,7 +62,7 @@
             watch: {
                 todos: {
                     handler: function (todos) {
-                        this.$http.post(this.$options.todosUrl, JSON.stringify(todos)).error(function (data, status, request) {
+                        this.$http.post(this.todosUrl, JSON.stringify(todos)).error(function (data, status, request) {
                             // handle error
                             alert(status);
                         });
@@ -96,7 +97,8 @@
             },
 
             ready: function() {
-                this.$http.get(this.$options.todosUrl, function (data, status, request) {
+                // load data
+                this.$http.get(this.todosUrl, function (data, status, request) {
                     // set data on vm
                     this.$set('todos', data)
                 }).error(function (data, status, request) {

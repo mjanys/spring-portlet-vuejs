@@ -2,14 +2,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <%@include file="init.jspf" %>
-<%@include file="components/todo.jspf"%>
+
+<portlet:resourceURL var="todosUrl" id="<%=TodoConstants.TODOS_RESOURCE%>"/>
+
 
 <div id="${ns}todo">
-    <todo></todo>
+    <todo todos-url="${todosUrl}" inline-template>
+        <%@include file="components/todo_template.html"%>
+    </todo>
 </div>
 
 <script type="text/javascript">
     new Vue({
-        el: '#${ns}todo'
+        el: '#${ns}todo',
+        components: {
+            todo: TodoVue
+        }
     });
 </script>
