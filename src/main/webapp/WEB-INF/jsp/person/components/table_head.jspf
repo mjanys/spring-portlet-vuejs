@@ -1,0 +1,24 @@
+<%--Params:--%>
+<%--@elvariable id="items" type="java.util.List<cz.janys.iface.dto.PersonDto>"--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<thead>
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            <spring:message code="label-table-header-name"/>
+        </th>
+        <th>
+            <spring:message code="label-table-header-email"/>
+        </th>
+        <th>
+            <spring:message code="label-table-header-created"/>
+        </th>
+        <th>
+            <spring:message code="label-table-header-actions"/>
+        </th>
+    </tr>
+</thead>

@@ -13,7 +13,7 @@
 <%@taglib prefix="liferay-theme" uri="http://liferay.com/tld/theme" %>
 
 <%@taglib prefix="h" tagdir="/WEB-INF/tags/html" %>
-<%@taglib prefix="f" tagdir="/WEB-INF/tags/form" %>
+<%@taglib prefix="f" tagdir="/WEB-INF/tags/form"%>
 <%@taglib prefix="bs" uri="http://efsavage.com/twitter-bootstrap" %>
 
 <portlet:defineObjects/>

@@ -1,0 +1,50 @@
+<%--@elvariable id="items" type="java.util.List<cz.janys.iface.dto.PersonDto>"--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<tbody>
+    <c:forEach items="${items}" varStatus="loop" var="item">
+        <bs:tr>
+            <td>
+                ${loop.index}
+            </td>
+            <td>
+                ${item.name}
+            </td>
+            <td>
+                ${item.email}
+            </td>
+            <td>
+                <fmt:formatDate value="${item.timestamp}" pattern="<%=Constants.DATE_TIME_FORMAT%>"/>
+            </td>
+            <td class="actions">
+                <%-- detail --%>
+                <portlet:renderURL var="detailUrl">
+                    <portlet:param name="<%=PARAM_PAGE%>" value="<%=PERSON_DETAIL_PAGE%>"/>
+                    <portlet:param name="<%=PARAM_ID%>" value="${item.id}"/>
+                </portlet:renderURL>
+                <h:link href="${detailUrl}">
+                    <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+                </h:link>
+
+                <%-- update --%>
+                <portlet:renderURL var="editUrl">
+                    <portlet:param name="<%=PARAM_PAGE%>" value="<%=PERSON_FORM_EDIT_PAGE%>"/>
+                    <portlet:param name="<%=PARAM_ID%>" value="${item.id}"/>
+                </portlet:renderURL>
+                <h:link href="${editUrl}">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </h:link>
+
+                <%-- delete --%>
+                <portlet:actionURL name="<%=ACTION_DELETE%>" var="deleteUrl"/>
+                <h:link href="javascript:$('#deleteForm').submit()">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </h:link>
+                <form:form id="deleteForm" action="${deleteUrl}" method="post">
+                    <input type="hidden" name="id" value="${item.id}"></hidden>
+                </form:form>
+            </td>
+        </bs:tr>
+    </c:forEach>
+</tbody>

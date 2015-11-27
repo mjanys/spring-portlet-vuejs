@@ -1,0 +1,10 @@
+<%--Params:--%>
+<%--@elvariable id="items" type="java.util.List<cz.janys.iface.dto.PersonDto>"--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<bs:table>
+    <%@include file="table_head.jspf"%>
+    <%@include file="table_body.jspf"%>
+</bs:table>
+

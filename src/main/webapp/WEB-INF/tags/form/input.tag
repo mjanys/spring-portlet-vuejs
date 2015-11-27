@@ -2,7 +2,9 @@
 
 <%@include file="../init.jspf" %>
 
-<form:input path="${path}" id="${id}" cssClass="form-control"/>
+<%@attribute name="model" type="java.lang.String" required="false" %>
+
+<form:input path="${path}" id="${id}" cssClass="form-control" v-model="${model}"/>
 <c:if test="${hasErrors}">
     <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
     <span id="inputError2Status" class="sr-only">(error)</span>

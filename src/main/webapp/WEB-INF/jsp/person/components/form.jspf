@@ -1,0 +1,41 @@
+<%--@elvariable id="personPto" type="cz.janys.portlet.person.pto.PersonPto"--%>
+<%@ page pageEncoding="UTF-8" %>
+<%@ page import="cz.janys.portlet.person.PersonConstants" %>
+
+<div id="${ns}personForm">
+    <div id="${ns}editForm" class="padding-10">
+       <portlet:actionURL name="<%=ACTION_SAVE%>" var="saveUrl"/>
+
+        <form:form modelAttribute="<%=ATTR_PERSON_PTO%>" action="${saveUrl}" method="post">
+            <form:hidden path="id"/>
+            <f:inputrow id="nameInput" path="name" labelCode="label-table-header-name" model="name"/>
+            <f:inputrow id="emailInput" path="email" labelCode="label-table-header-email" model="email"/>
+
+            <bs:button type="submit" cssClass="btn-default">
+                <c:choose>
+                    <c:when test="${empty personPto.id}">
+                        <spring:message code="label-create"/>
+                    </c:when>
+                    <c:otherwise>
+                        <spring:message code="label-update"/>
+                    </c:otherwise>
+                </c:choose>
+            </bs:button>
+        </form:form>
+    </div>
+
+    <div>
+        <%@include file="person_preview.jspf"%>
+    </div>
+</div>
+
+
+<script type="application/javascript">
+    var personFormVue = new Vue({
+        el: '#${ns}personForm',
+        data: {
+            name: null,
+            email: null
+        }
+    });
+</script>

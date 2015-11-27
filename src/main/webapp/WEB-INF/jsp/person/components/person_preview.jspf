@@ -1,0 +1,9 @@
+<div class="well">
+    <strong>Preview</strong>
+    <div>
+        <spring:message code="label-table-header-name"/>: {{name}}
+    </div>
+    <div>
+        <spring:message code="label-table-header-email"/>: {{email}}
+    </div>
+</div>
