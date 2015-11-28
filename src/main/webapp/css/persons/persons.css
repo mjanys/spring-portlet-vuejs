@@ -22,3 +22,7 @@
 .persons-table-head th {
     cursor: pointer;
 }
+
+.error {
+    color: red;
+}

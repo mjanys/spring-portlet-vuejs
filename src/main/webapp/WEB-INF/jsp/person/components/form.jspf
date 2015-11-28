@@ -15,7 +15,7 @@
                         <span class="fieldError">${status.errorMessage}</span>
                     </spring:bind>
                 </f:inputrow>
-                <div>
+                <div class="error">
                     <span v-show="$personValidation.name.required"><spring:message code="msg-name-is-required"/></span>
                     <span v-show="!$personValidation.name.required && $personValidation.name.minlength"><spring:message
                             code="msg-name-min-len" arguments="3"/></span>
@@ -28,7 +28,7 @@
                                v-validate:email.required.email/>
                     </spring:bind>
                 </f:inputrow>
-                <div>
+                <div class="error">
                     <span v-show="$personValidation.email.required"><spring:message
                             code="msg-email-is-required"/></span>
                     <span v-show="!$personValidation.email.required && $personValidation.email.email"><spring:message
