@@ -10,12 +10,13 @@
                 <form:hidden path="id"/>
                 <f:inputrow id="nameInput" path="name" labelCode="label-table-header-name" model="name">
                     <spring:bind path="name">
-                        <input type="text" name="${status.expression}" value="${status.value}" v-model="name"
+                        <input type="text" name="${status.expression}" value="${status.value}"
+                               v-model="name"
                                v-validate:name.required.minlength.maxlength="{ minlength: 3, maxlength: 16 }"/>
                         <span class="fieldError">${status.errorMessage}</span>
                     </spring:bind>
                 </f:inputrow>
-                <div class="error">
+                <div class="error" v-show="$personValidation.name.dirty" v-cloak>
                     <span v-show="$personValidation.name.required"><spring:message code="msg-name-is-required"/></span>
                     <span v-show="!$personValidation.name.required && $personValidation.name.minlength"><spring:message
                             code="msg-name-min-len" arguments="3"/></span>
@@ -24,11 +25,12 @@
                 </div>
                 <f:inputrow id="emailInput" path="email" labelCode="label-table-header-email" model="email">
                     <spring:bind path="email">
-                        <input type="text" name="${status.expression}" value="${status.value}" v-model="email"
+                        <input type="text" name="${status.expression}" value="${status.value}"
+                               v-model="email"
                                v-validate:email.required.email/>
                     </spring:bind>
                 </f:inputrow>
-                <div class="error">
+                <div class="error" v-show="$personValidation.email.dirty" v-cloak>
                     <span v-show="$personValidation.email.required"><spring:message
                             code="msg-email-is-required"/></span>
                     <span v-show="!$personValidation.email.required && $personValidation.email.email"><spring:message
