@@ -1,27 +1,54 @@
 <%--@elvariable id="personPto" type="cz.janys.portlet.person.pto.PersonPto"--%>
 <%@ page pageEncoding="UTF-8" %>
-<%@ page import="cz.janys.portlet.person.PersonConstants" %>
 
 <div id="${ns}personForm">
     <div id="${ns}editForm" class="padding-10">
        <portlet:actionURL name="<%=ACTION_SAVE%>" var="saveUrl"/>
 
-        <form:form modelAttribute="<%=ATTR_PERSON_PTO%>" action="${saveUrl}" method="post">
-            <form:hidden path="id"/>
-            <f:inputrow id="nameInput" path="name" labelCode="label-table-header-name" model="name"/>
-            <f:inputrow id="emailInput" path="email" labelCode="label-table-header-email" model="email"/>
+        <validator name="personValidation">
+            <form:form modelAttribute="<%=ATTR_PERSON_PTO%>" action="${saveUrl}" method="post">
+                <form:hidden path="id"/>
+                <f:inputrow id="nameInput" path="name" labelCode="label-table-header-name" model="name">
+                    <spring:bind path="name">
+                        <input type="text" name="${status.expression}" value="${status.value}" v-model="name"
+                               v-validate:name.required.minlength.maxlength="{ minlength: 3, maxlength: 16 }"/>
+                        <span class="fieldError">${status.errorMessage}</span>
+                    </spring:bind>
+                </f:inputrow>
+                <div>
+                    <span v-show="$personValidation.name.required"><spring:message code="msg-name-is-required"/></span>
+                    <span v-show="!$personValidation.name.required && $personValidation.name.minlength"><spring:message
+                            code="msg-name-min-len" arguments="3"/></span>
+                    <span v-show="!$personValidation.name.required && $personValidation.name.maxlength"><spring:message
+                            code="msg-name-max-len" arguments="16"/></span>
+                </div>
+                <f:inputrow id="emailInput" path="email" labelCode="label-table-header-email" model="email">
+                    <spring:bind path="email">
+                        <input type="text" name="${status.expression}" value="${status.value}" v-model="email"
+                               v-validate:email.required.email/>
+                    </spring:bind>
+                </f:inputrow>
+                <div>
+                    <span v-show="$personValidation.email.required"><spring:message
+                            code="msg-email-is-required"/></span>
+                    <span v-show="!$personValidation.email.required && $personValidation.email.email"><spring:message
+                            code="msg-email-invalid"/></span>
+                </div>
 
-            <bs:button type="submit" cssClass="btn-default">
-                <c:choose>
-                    <c:when test="${empty personPto.id}">
-                        <spring:message code="label-create"/>
-                    </c:when>
-                    <c:otherwise>
-                        <spring:message code="label-update"/>
-                    </c:otherwise>
-                </c:choose>
-            </bs:button>
-        </form:form>
+                <div v-if="$personValidation.valid">
+                    <bs:button type="submit" cssClass="btn-default">
+                        <c:choose>
+                            <c:when test="${empty personPto.id}">
+                                <spring:message code="label-create"/>
+                            </c:when>
+                            <c:otherwise>
+                                <spring:message code="label-update"/>
+                            </c:otherwise>
+                        </c:choose>
+                    </bs:button>
+                </div>
+            </form:form>
+        </validator>
     </div>
 
     <div>
@@ -31,6 +58,10 @@
 
 
 <script type="application/javascript">
+    Vue.validator('email', function (val) {
+        return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(val)
+    });
+
     var personFormVue = new Vue({
         el: '#${ns}personForm',
         data: {
