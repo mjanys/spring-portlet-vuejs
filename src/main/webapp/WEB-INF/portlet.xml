@@ -20,11 +20,11 @@
     </portlet>
 
     <portlet>
-        <portlet-name>Person Portlet</portlet-name>
+        <portlet-name>PersonPortlet</portlet-name>
         <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
         <init-param>
             <name>contextConfigLocation</name>
-            <value>/WEB-INF/spring-context/portlet/person-protlet.xml</value>
+            <value>/WEB-INF/spring-context/portlet/person-portlet.xml</value>
         </init-param>
         <supports>
             <mime-type>text/html</mime-type>
@@ -32,5 +32,20 @@
         </supports>
         <supported-locale>en</supported-locale>
         <resource-bundle>content.person-portlet</resource-bundle>
+    </portlet>
+
+    <portlet>
+        <portlet-name>UrlStatePortlet</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>/WEB-INF/spring-context/portlet/url-state-portlet.xml</value>
+        </init-param>
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>VIEW</portlet-mode>
+        </supports>
+        <supported-locale>en</supported-locale>
+        <resource-bundle>content.url-state-portlet</resource-bundle>
     </portlet>
 </portlet-app>
