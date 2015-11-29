@@ -1,6 +1,7 @@
 (function (window) {
 
     Vue.filter('queryString', function (json) {
+        // Y.QueryString.stringify(data);
         return Object.keys(json).map(function(key) {
             return encodeURIComponent(key) + '=' + encodeURIComponent(json[key]);
         }).join('&');

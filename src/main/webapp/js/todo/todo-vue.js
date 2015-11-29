@@ -46,7 +46,9 @@
     };
 
     window.TodoVue = window.TodoVue || Vue.extend({
-            props: ['todosUrl'],
+            props: {
+                'todosUrl': String
+            },
             // app initial state
             // can't in extends - it could be shared between instances
             data: function() {

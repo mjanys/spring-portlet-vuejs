@@ -10,7 +10,7 @@
         <header-portlet-css>/css/vue.css</header-portlet-css>
         <header-portlet-css>/css/vue-animate.css</header-portlet-css>
         <header-portlet-css>/css/todo/todo.css</header-portlet-css>
-        <header-portlet-javascript>/js/vue.min.js</header-portlet-javascript>
+        <header-portlet-javascript>/js/vue.js</header-portlet-javascript>
         <header-portlet-javascript>/js/vue-resource.min.js</header-portlet-javascript>
         <header-portlet-javascript>/js/vue-director.js</header-portlet-javascript>
         <header-portlet-javascript>/js/todo/todo-vue.js</header-portlet-javascript>
@@ -23,7 +23,7 @@
         <requires-namespaced-parameters>false</requires-namespaced-parameters>
         <header-portlet-css>/css/vue.css</header-portlet-css>
         <header-portlet-css>/css/persons/persons.css</header-portlet-css>
-        <header-portlet-javascript>/js/vue.min.js</header-portlet-javascript>
+        <header-portlet-javascript>/js/vue.js</header-portlet-javascript>
         <header-portlet-javascript>/js/vue-resource.min.js</header-portlet-javascript>
         <header-portlet-javascript>/js/vue-validator.js</header-portlet-javascript>
         <header-portlet-javascript>/js/person/person-vue.js</header-portlet-javascript>
@@ -34,7 +34,7 @@
         <instanceable>true</instanceable>
         <requires-namespaced-parameters>false</requires-namespaced-parameters>
         <header-portlet-css>/css/vue.css</header-portlet-css>
-        <header-portlet-javascript>/js/vue.min.js</header-portlet-javascript>
+        <header-portlet-javascript>/js/vue.js</header-portlet-javascript>
         <header-portlet-javascript>/js/url-state/url-state-vue.js</header-portlet-javascript>
     </portlet>
 </liferay-portlet-app>
