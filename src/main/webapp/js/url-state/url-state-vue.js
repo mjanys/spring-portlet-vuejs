@@ -47,7 +47,7 @@
             methods: {
                 addUrlData: function (e) {
                     if (this.urlDataToAdd.key) {
-                        this.$set('urlData.' + this.urlDataToAdd.key, this.urlDataToAdd.value);
+                        Vue.set(this.urlData, this.urlDataToAdd.key, this.urlDataToAdd.value);
                     }
                     this.urlDataToAdd.key = null;
                     this.urlDataToAdd.value = null;
