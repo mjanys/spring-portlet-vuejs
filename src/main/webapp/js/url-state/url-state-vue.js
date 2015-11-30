@@ -2,7 +2,9 @@
 
     Vue.filter('queryString', function (json) {
         // Y.QueryString.stringify(data);
-        return Object.keys(json).map(function(key) {
+        return Object.keys(json).filter(function (k) {
+            return !!k;
+        }).map(function (key) {
             return encodeURIComponent(key) + '=' + encodeURIComponent(json[key]);
         }).join('&');
     });
@@ -26,7 +28,14 @@
     window.UrlState = window.UrlState || Vue.extend({
             data: function() {
                 return {
-                    urlData: {}
+                    urlData: {},
+                    urlDataToAdd: {
+                        key: null,
+                        value: null
+                    },
+                    urlDataToRemove: {
+                        key: null
+                    }
                 }
             },
 
@@ -35,6 +44,33 @@
                 this.$set('urlData', params);
             },
 
-            methods: {}
+            methods: {
+                addUrlData: function (e) {
+                    if (this.urlDataToAdd.key) {
+                        this.$set('urlData.' + this.urlDataToAdd.key, this.urlDataToAdd.value);
+                    }
+                    this.urlDataToAdd.key = null;
+                    this.urlDataToAdd.value = null;
+                },
+                removeUrlData: function (e) {
+                    Vue.delete(this.urlData, this.urlDataToRemove.key);
+                    this.urlDataToRemove.key = null;
+                }
+            },
+
+            watch: {
+                urlData: {
+                    handler: function (data) {
+                        this.$log('urlData');
+                        if (!Object.keys(this.urlData).length) {
+                            window.location.hash = '';
+                        }
+                        else {
+                            window.location.hash = this.$eval("urlData | queryString | hash");
+                        }
+                    },
+                    deep: true
+                }
+            }
         });
 })(window);
