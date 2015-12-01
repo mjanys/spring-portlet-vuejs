@@ -8,7 +8,7 @@
     <a href='{{urlData | queryString | hash}}'>Current url</a>
 
     <form action="" @submit.prevent="addUrlData($event)">
-        <h3>Add</h3>
+        <h3>Set</h3>
         <input v-model="urlDataToAdd.key"/>
         <input v-model="urlDataToAdd.value"/>
         <input type="submit" v-show="false"/>
